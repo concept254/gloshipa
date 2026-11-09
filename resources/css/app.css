@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../storage/framework/views/*.php';
+
+/*
+|--------------------------------------------------------------------------
+| Glo Shipa theme
+|--------------------------------------------------------------------------
+| `--color-*: initial` removes Tailwind's entire default palette (no gray-500,
+| blue-600, red-500 ...). Only the colours below exist, so every screen uses
+| the Glo Shipa identity: deep harbour navy, beacon orange, tide teal, sand.
+*/
+@theme {
+    --color-*: initial;
+
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Harbour navy: text, headers, dark surfaces */
+    --color-ink-50: #f2f5f8;
+    --color-ink-100: #e1e8ef;
+    --color-ink-200: #c3d0dd;
+    --color-ink-300: #93a8bd;
+    --color-ink-400: #627d97;
+    --color-ink-500: #42607d;
+    --color-ink-600: #2f4a65;
+    --color-ink-700: #223a52;
+    --color-ink-800: #162b40;
+    --color-ink-900: #0e2033;
+    --color-ink-950: #08141f;
+
+    /* Beacon orange: the main action colour */
+    --color-beacon-100: #ffe9db;
+    --color-beacon-200: #ffd0b3;
+    --color-beacon-400: #ff9a5c;
+    --color-beacon-500: #ff7a2f;
+    --color-beacon-600: #e85f14;
+    --color-beacon-700: #c24a0c;
+
+    /* Tide teal: in-motion / informational */
+    --color-tide-50: #e8f7f5;
+    --color-tide-100: #c8ede8;
+    --color-tide-200: #98ddd3;
+    --color-tide-500: #14a394;
+    --color-tide-600: #0e8579;
+    --color-tide-700: #0c6a61;
+
+    /* Sand: page backgrounds and soft panels */
+    --color-sand-50: #fbf8f2;
+    --color-sand-100: #f5efe3;
+    --color-sand-200: #eae0cc;
+    --color-sand-300: #d8c9ac;
+
+    /* Signal colours for statuses and messages */
+    --color-ok-100: #ddf3df;
+    --color-ok-600: #1e7b34;
+    --color-warn-100: #fff1cc;
+    --color-warn-700: #8a5a00;
+    --color-bad-100: #fde1e0;
+    --color-bad-600: #b42318;
+    --color-bad-700: #8e1b12;
+
+    --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --shadow-card: 0 1px 0 rgb(14 32 51 / 0.04), 0 8px 24px -12px rgb(14 32 51 / 0.18);
+    --shadow-lift: 0 2px 0 rgb(14 32 51 / 0.05), 0 18px 40px -16px rgb(14 32 51 / 0.35);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-sand-50);
+        color: var(--color-ink-900);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-display);
+        letter-spacing: -0.02em;
+    }
+
+    ::selection {
+        background: var(--color-beacon-200);
+        color: var(--color-ink-950);
+    }
+}
+
+@layer components {
+    /* Corrugated shipping-container stripes, used as a quiet texture */
+    .container-stripes {
+        background-image: repeating-linear-gradient(
+            90deg,
+            rgb(255 255 255 / 0.05) 0,
+            rgb(255 255 255 / 0.05) 2px,
+            transparent 2px,
+            transparent 14px
+        );
+    }
+
+    .card {
+        @apply rounded-2xl border border-ink-100 bg-white shadow-card;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ink-900 disabled:opacity-60;
+    }
+
+    .btn-primary {
+        @apply bg-beacon-500 text-ink-950 hover:bg-beacon-400 active:bg-beacon-600;
+    }
+
+    .btn-dark {
+        @apply bg-ink-900 text-white hover:bg-ink-700;
+    }
+
+    .btn-ghost {
+        @apply border border-ink-200 bg-white text-ink-800 hover:border-ink-300 hover:bg-ink-50;
+    }
+
+    .btn-danger {
+        @apply border border-bad-100 bg-bad-100 text-bad-700 hover:bg-bad-600 hover:text-white;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-xs;
+    }
+
+    .label {
+        @apply mb-1.5 block text-sm font-medium text-ink-700;
+    }
+
+    .input {
+        @apply block w-full rounded-xl border border-ink-200 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-300 focus:border-tide-500 focus:outline-none focus:ring-2 focus:ring-tide-200;
+    }
+
+    .th {
+        @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-ink-400;
+    }
+
+    .td {
+        @apply px-4 py-3.5 text-sm text-ink-700;
+    }
+
+    .eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.18em] text-tide-600;
+    }
+}

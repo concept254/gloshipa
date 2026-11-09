@@ -1,0 +1,99 @@
+name: Deploy to cPanel
+
+# MANUAL by default: open the Actions tab, choose "Deploy to cPanel" and press "Run workflow".
+# That way a push can never change the live site by accident.
+#
+# To deploy automatically on every push to main instead, replace the "on:" block with:
+#
+#   on:
+#     push:
+#       branches:
+#         - main
+#     workflow_dispatch:
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run: log what would be uploaded, but upload nothing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Never run two deployments at once.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Test, build and upload
+    runs-on: ubuntu-latest
+    # The first upload sends the whole vendor folder over FTP and can take a long time.
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Laravel 13's minimum. If your host runs a newer PHP you may raise this, but keep
+      # composer.json's "platform" setting equal to the oldest PHP you deploy to.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.3'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      # 1. Test first. A failing test stops the deployment here.
+      - name: Install PHP packages (including dev tools)
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Run the tests
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan test
+
+      # 2. Build exactly what the server needs: production PHP packages and compiled CSS.
+      - name: Install production PHP packages only
+        run: |
+          rm -f .env
+          composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress
+
+      - name: Build CSS and JS
+        run: |
+          if [ -f package-lock.json ]; then npm ci --ignore-scripts; else npm install --ignore-scripts; fi
+          npm run build
+
+      # 3. Upload. The server's own .env is never touched: it is not in the repository and is excluded below.
+      - name: Upload to cPanel over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@a51268f67f6605236975928ae28b0f7e9971d50a # v4.3.6
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
+          local-dir: ./
+          dry-run: ${{ inputs.dry_run }}
+          exclude: |
+            **/.git/**
+            .git/**
+            .github/**
+            node_modules/**
+            tests/**
+            .env
+            storage/logs/*.log
+            storage/framework/views/*.php
+            database/*.sqlite
