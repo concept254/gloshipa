@@ -31,7 +31,7 @@ class HomeController extends Controller
             }
         }
 
-        // No local images found, use a random placeholder
+        // Random hero image placeholder
         return 'https://picsum.photos/seed/' . random_int(1, 1000) . '/1200/900';
     }
 }
