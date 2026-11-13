@@ -4,6 +4,7 @@ Shipment tracking for gloshipa.com. Built with Laravel 13 and Tailwind CSS 4.
 
 **What it does**
 
+- **Website (Phase 2):** a multi-page site (About, Services, FAQs, Team, Clients, News, Contact, Quote, Terms ...) with an admin content manager. See [UPGRADE-WEBSITE.md](UPGRADE-WEBSITE.md).
 - **Home page** with a hero, a tracking form and an illustrated ship image.
 - **Clients** register, wait for approval, then sign in with their username or email. They get a dashboard (their details, pending shipments), can edit their profile and password, and can track a shipment by tracking ID or container number. A client can only ever see their own shipments.
 - **Super admin** approves or switches off clients, creates shipments, assigns each one to a client, and logs status and location updates on a timeline.
@@ -105,7 +106,8 @@ php artisan migrate:fresh --seed    # wipe the local database and start again
 | Where "new registration" alerts are sent | `ADMIN_EMAIL` in `.env` |
 | Colours and fonts | `@theme` block in `resources/css/app.css`, then `npm run build` |
 | Hero image | Put your photo in `public/images/` and change the `asset('images/hero-ship.svg')` line in `resources/views/home.blade.php` |
-| Home page text | `resources/views/home.blade.php` |
+| Website text, pages, services, FAQs, contact details | Sign in as admin > **Website** (see UPGRADE-WEBSITE.md) |
+| Home page layout | `resources/views/home.blade.php` |
 | Logo | `resources/views/components/logo.blade.php` |
 | Shipment statuses | `STATUSES` in `app/Models/Shipment.php` (also add a colour in `resources/views/components/status-badge.blade.php`) |
 | Timezone | `APP_TIMEZONE` in `.env` (default `Africa/Johannesburg`) |

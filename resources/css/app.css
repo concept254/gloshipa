@@ -155,3 +155,67 @@
         @apply text-xs font-semibold uppercase tracking-[0.18em] text-tide-600;
     }
 }
+
+/* ---- Phase 2: website pages ---- */
+@layer components {
+    .no-scrollbar {
+        scrollbar-width: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Rendered Markdown (page bodies, services, news). No typography plugin needed. */
+    .prose-gs {
+        @apply text-base leading-relaxed text-ink-700;
+    }
+
+    .prose-gs > * + * {
+        @apply mt-5;
+    }
+
+    .prose-gs h2 {
+        @apply mt-10 font-display text-2xl font-extrabold text-ink-900;
+    }
+
+    .prose-gs h3 {
+        @apply mt-8 font-display text-xl font-bold text-ink-900;
+    }
+
+    .prose-gs a {
+        @apply font-medium text-tide-700 underline decoration-beacon-500 decoration-2 underline-offset-4 hover:text-tide-600;
+    }
+
+    .prose-gs ul {
+        @apply list-disc space-y-1.5 pl-6;
+    }
+
+    .prose-gs ol {
+        @apply list-decimal space-y-1.5 pl-6;
+    }
+
+    .prose-gs strong {
+        @apply font-semibold text-ink-900;
+    }
+
+    .prose-gs blockquote {
+        @apply border-l-4 border-beacon-500 bg-sand-100 py-2 pl-5 pr-4 italic;
+    }
+
+    .prose-gs table {
+        @apply w-full border-collapse text-sm;
+    }
+
+    .prose-gs th {
+        @apply border-b border-ink-200 bg-sand-100 px-3 py-2 text-left font-semibold text-ink-900;
+    }
+
+    .prose-gs td {
+        @apply border-b border-ink-100 px-3 py-2;
+    }
+
+    .prose-gs img {
+        @apply rounded-xl;
+    }
+}

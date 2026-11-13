@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->createAdmin();
+        $this->call(ContentSeeder::class);
 
         // Demo data is only created on a local machine (Herd), never on the live server.
         if (app()->environment('local')) {

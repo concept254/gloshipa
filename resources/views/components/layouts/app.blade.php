@@ -8,6 +8,7 @@
             ['route' => 'admin.dashboard', 'match' => 'admin.dashboard', 'label' => 'Overview'],
             ['route' => 'admin.shipments.index', 'match' => 'admin.shipments.*', 'label' => 'Shipments'],
             ['route' => 'admin.users.index', 'match' => 'admin.users.*', 'label' => 'Clients'],
+            ['route' => 'admin.website.hub', 'match' => 'admin.website.*', 'label' => 'Website'],
             ['route' => 'track', 'match' => 'track', 'label' => 'Track'],
         ]
         : [
@@ -17,12 +18,13 @@
             ['route' => 'profile.edit', 'match' => 'profile.*', 'label' => 'Profile'],
         ];
 
+    $unreadInquiries = $admin ? Cms::guard(fn () => \App\Models\Inquiry::whereNull('read_at')->count(), 0) : 0;
     $pendingApprovals = $admin ? \App\Models\User::clients()->where('status', \App\Models\User::STATUS_PENDING)->count() : 0;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>@include('partials.head', ['title' => $title])</head>
-<body class="min-h-screen">
+<body class="flex min-h-screen flex-col">
 
 <header class="bg-ink-900 text-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
@@ -35,6 +37,9 @@
                         {{ $link['label'] }}
                         @if ($admin && $link['route'] === 'admin.users.index' && $pendingApprovals > 0)
                             <span class="ml-1.5 inline-flex min-w-5 justify-center rounded-full bg-beacon-500 px-1.5 text-xs font-bold text-ink-950">{{ $pendingApprovals }}</span>
+                        @endif
+                        @if ($admin && $link['route'] === 'admin.website.hub' && $unreadInquiries > 0)
+                            <span class="ml-1.5 inline-flex min-w-5 justify-center rounded-full bg-beacon-500 px-1.5 text-xs font-bold text-ink-950">{{ $unreadInquiries }}</span>
                         @endif
                     </a>
                 @endforeach
@@ -72,10 +77,12 @@
     </div>
 @endif
 
-<main class="mx-auto max-w-7xl px-5 py-8 sm:px-8">
+<main class="mx-auto w-full max-w-7xl flex-1 px-5 py-8 sm:px-8">
     <x-flash />
     {{ $slot }}
 </main>
+
+<x-site-footer />
 
 <script>
     (function () {

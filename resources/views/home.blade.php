@@ -1,16 +1,16 @@
-<x-layouts.public title="Track your cargo">
+<x-layouts.public title="Track your cargo" description="Freight forwarding and live shipment tracking from Glo Shipa.">
 
     {{-- HERO --}}
     <section class="relative overflow-hidden bg-sand-100">
-        <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:pb-28 lg:pt-36">
+        <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-14 sm:px-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:pb-28 lg:pt-20">
 
             <div>
-                <p class="eyebrow">Cargo tracking for importers &amp; exporters</p>
+                <p class="eyebrow">{{ Cms::setting('hero_eyebrow', 'Cargo tracking for importers & exporters') }}</p>
                 <h1 class="mt-4 font-display text-5xl font-extrabold leading-[1.02] text-ink-900 sm:text-6xl">
-                    Know exactly where<br>your cargo is<span class="text-beacon-500">.</span>
+                    {{ rtrim(Cms::setting('hero_title', 'Know exactly where your cargo is'), '.') }}<span class="text-beacon-500">.</span>
                 </h1>
                 <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
-                    Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Glo Shipa is handling for you.
+                    {{ Cms::setting('hero_text', 'Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Glo Shipa is handling for you.') }}
                 </p>
 
                 <div class="mt-9 max-w-xl rounded-2xl bg-white p-3 shadow-lift ring-1 ring-ink-100">
@@ -29,7 +29,7 @@
             <div class="relative">
                 <div class="absolute -inset-4 rotate-2 rounded-[2rem] bg-beacon-200/60" aria-hidden="true"></div>
                 <div class="relative overflow-hidden rounded-[1.75rem] bg-ink-900 shadow-lift ring-1 ring-ink-900/10">
-                    <img src="{{ $heroImage }}" alt="Container shipping and cargo logistics" class="aspect-[4/3] w-full object-cover" width="960" height="720">
+                    <img src="{{ asset('images/hero-ship.svg') }}" alt="A loaded container ship sailing past a port at sunrise" class="aspect-[4/3] w-full object-cover" width="960" height="720">
                 </div>
 
                 <div class="absolute -bottom-6 left-4 hidden max-w-[260px] rounded-2xl bg-white p-4 shadow-lift ring-1 ring-ink-100 sm:block lg:-left-8">
@@ -43,6 +43,56 @@
             </div>
         </div>
     </section>
+
+
+    {{-- STATS (hidden until filled in under Website > Settings) --}}
+    @php
+        $stats = collect([1, 2, 3, 4])->map(fn ($i) => [Cms::setting("stat_{$i}_value"), Cms::setting("stat_{$i}_label")])->filter(fn ($s) => $s[0] && $s[1]);
+    @endphp
+    @if ($stats->isNotEmpty())
+        <section class="container-stripes bg-ink-900 text-white">
+            <dl class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-5 py-10 text-center sm:px-8 {{ $stats->count() >= 4 ? 'lg:grid-cols-4' : ($stats->count() === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2') }}">
+                @foreach ($stats as [$value, $label])
+                    <div><dt class="font-display text-4xl font-extrabold text-beacon-400">{{ $value }}</dt><dd class="mt-1 text-sm text-ink-200">{{ $label }}</dd></div>
+                @endforeach
+            </dl>
+        </section>
+    @endif
+
+    {{-- SERVICES --}}
+    @if ($services->isNotEmpty())
+        <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+                <x-section-heading eyebrow="What we do" title="Freight solutions for every shipment" text="From a single pallet to a full container load, we plan the route, handle the paperwork and keep you updated." />
+                <a href="{{ route('site.services') }}" class="btn btn-ghost">All services</a>
+            </div>
+            <div class="mt-10">
+                <x-carousel label="Services">
+                    @foreach ($services as $service)<div data-slide class="w-[88%] snap-start sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">@include('site.partials.service-card')</div>@endforeach
+                </x-carousel>
+            </div>
+        </section>
+    @endif
+
+    {{-- ABOUT TEASER --}}
+    @if ($about)
+        <section class="bg-sand-100 py-20">
+            <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2">
+                <div class="overflow-hidden rounded-3xl shadow-lift">
+                    <img src="{{ Cms::headerImage($about->header_image, 'about') }}" alt="" class="aspect-[4/3] w-full object-cover" loading="lazy">
+                </div>
+                <div>
+                    <p class="eyebrow">About Glo Shipa</p>
+                    <h2 class="mt-3 font-display text-3xl font-extrabold text-ink-900 sm:text-4xl">{{ $about->subtitle ?: 'A freight partner you can follow every step of the way.' }}</h2>
+                    <p class="mt-4 leading-relaxed text-ink-600">{{ \Illuminate\Support\Str::limit(strip_tags(Cms::markdown($about->body)), 320) }}</p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="{{ route('site.about') }}" class="btn btn-dark">About us</a>
+                        <a href="{{ route('site.team') }}" class="btn btn-ghost">Meet the team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     {{-- WHY --}}
     <section id="why" class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
@@ -90,6 +140,57 @@
         </div>
     </section>
 
+
+    {{-- TESTIMONIALS --}}
+    @if ($testimonials->isNotEmpty())
+        <section class="bg-sand-100 py-20">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <x-section-heading eyebrow="Testimonials" title="Trusted by importers and exporters" center />
+                <div class="mt-10">
+                    <x-carousel label="Testimonials">
+                        @foreach ($testimonials as $t)<div data-slide class="w-[88%] snap-start sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">@include('site.partials.testimonial-card')</div>@endforeach
+                    </x-carousel>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- FAQ --}}
+    @if ($faqs->isNotEmpty())
+        <section class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+            <div>
+                <x-section-heading eyebrow="FAQs" title="Answers before you ask" text="The questions we hear most from new clients." />
+                <a href="{{ route('site.faqs') }}" class="btn btn-ghost mt-6">All questions</a>
+            </div>
+            @include('site.partials.faq-list', ['faqs' => $faqs, 'open' => true])
+        </section>
+    @endif
+
+    {{-- PARTNERS --}}
+    @if ($partners->isNotEmpty())
+        <section class="border-y border-ink-100 bg-white py-14">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-ink-400">Our clients &amp; partners</p>
+                <div class="mt-8">
+                    <x-carousel label="Clients and partners" :per="5">
+                        @foreach ($partners as $p)<div data-slide class="w-[46%] snap-start sm:w-[calc(33.333%-1rem)] lg:w-[calc(20%-1.2rem)]">@include('site.partials.partner-logo')</div>@endforeach
+                    </x-carousel>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- NEWS --}}
+    @if ($posts->isNotEmpty())
+        <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+                <x-section-heading eyebrow="News" title="Latest from Glo Shipa" />
+                <a href="{{ route('site.news') }}" class="btn btn-ghost">All news</a>
+            </div>
+            <div class="mt-10 grid gap-6 md:grid-cols-3">@foreach ($posts as $post)@include('site.partials.post-card')@endforeach</div>
+        </section>
+    @endif
+
     {{-- CTA --}}
     <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div class="flex flex-col items-start justify-between gap-6 rounded-3xl bg-beacon-100 p-10 sm:flex-row sm:items-center sm:p-14">
@@ -103,6 +204,7 @@
                 @else
                     <a href="{{ route('register') }}" class="btn btn-dark">Request an account</a>
                     <a href="{{ route('login') }}" class="btn btn-ghost">Sign in</a>
+                    <a href="{{ route('site.quote') }}" class="btn btn-ghost">Get a quote</a>
                 @endauth
             </div>
         </div>

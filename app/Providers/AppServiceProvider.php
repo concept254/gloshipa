@@ -11,7 +11,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Lets Blade views write Cms::setting('...') without an import.
+        \Illuminate\Foundation\AliasLoader::getInstance()->alias('Cms', \App\Support\Cms::class);
     }
 
     /**
