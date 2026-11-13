@@ -10,13 +10,17 @@ use App\Support\Notify;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
 
 class SiteController extends Controller
 {
+    private const HERO_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'avif', 'gif'];
+
     public function home(): View
     {
         return view('home', [
+            'heroImage' => $this->heroImage(),
             'services' => Cms::guard(fn () => Service::active()->get(), collect()),
             'faqs' => Cms::guard(fn () => Faq::active()->limit(6)->get(), collect()),
             'testimonials' => Cms::guard(fn () => Testimonial::active()->get(), collect()),
@@ -25,6 +29,25 @@ class SiteController extends Controller
             'team' => Cms::guard(fn () => TeamMember::active()->limit(4)->get(), collect()),
             'about' => Cms::page('about'),
         ]);
+    }
+
+    /** Random picture from public/images/hero; a random picsum photo if that folder has no images. */
+    private function heroImage(): string
+    {
+        $folder = public_path('images/hero');
+
+        if (File::isDirectory($folder)) {
+            $images = collect(File::files($folder))
+                ->filter(fn ($file) => in_array(strtolower($file->getExtension()), self::HERO_EXTENSIONS, true))
+                ->values();
+
+            if ($images->isNotEmpty()) {
+                return asset('images/hero/' . rawurlencode($images->random()->getFilename()));
+            }
+        }
+
+        // Random hero image placeholder
+        return 'https://picsum.photos/seed/' . random_int(1, 1000) . '/1200/900';
     }
 
     public function about(): View

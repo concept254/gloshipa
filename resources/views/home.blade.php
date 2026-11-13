@@ -29,7 +29,7 @@
             <div class="relative">
                 <div class="absolute -inset-4 rotate-2 rounded-[2rem] bg-beacon-200/60" aria-hidden="true"></div>
                 <div class="relative overflow-hidden rounded-[1.75rem] bg-ink-900 shadow-lift ring-1 ring-ink-900/10">
-                    <img src="{{ asset('images/hero-ship.svg') }}" alt="A loaded container ship sailing past a port at sunrise" class="aspect-[4/3] w-full object-cover" width="960" height="720">
+                    <img src="{{ $heroImage }}" alt="Container shipping and cargo logistics" class="aspect-[4/3] w-full object-cover" width="960" height="720">
                 </div>
 
                 <div class="absolute -bottom-6 left-4 hidden max-w-[260px] rounded-2xl bg-white p-4 shadow-lift ring-1 ring-ink-100 sm:block lg:-left-8">
