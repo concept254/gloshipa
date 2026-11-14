@@ -29,7 +29,10 @@
 <header class="bg-ink-900 text-white">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
         <div class="flex items-center gap-10">
-            <a href="{{ $admin ? route('admin.dashboard') : route('dashboard') }}" aria-label="Glo Shipa"><x-logo :dark="true" /></a>
+            <a href="{{ $admin ? route('admin.dashboard') : route('dashboard') }}" aria-label="Global Shipping Alliance" class="flex items-center">
+                <img src="{{ asset('images/logo-compact-light.svg') }}" alt="Global Shipping Alliance" class="h-9 w-auto sm:hidden">
+                <img src="{{ asset('images/logo-light.svg') }}" alt="Global Shipping Alliance" class="hidden h-11 w-auto sm:block">
+            </a>
             <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
                 @foreach ($links as $link)
                     <a href="{{ route($link['route']) }}"
