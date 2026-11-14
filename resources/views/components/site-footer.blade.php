@@ -24,7 +24,9 @@
 <footer class="bg-ink-950 text-ink-200">
     <div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-            <x-logo :dark="true" />
+            <a href="{{ route('home') }}" aria-label="Global Shipping Alliance home" class="inline-block">
+                <img src="{{ asset('images/logo-light.svg') }}" alt="Global Shipping Alliance" class="h-14 w-auto">
+            </a>
             <p class="mt-4 max-w-xs text-sm leading-relaxed text-ink-300">{{ Cms::setting('footer_about', 'Clear, reliable tracking for the cargo you move, from the port of origin to your door.') }}</p>
             @if ($socials)
                 <ul class="mt-5 flex flex-wrap gap-2 text-xs">
