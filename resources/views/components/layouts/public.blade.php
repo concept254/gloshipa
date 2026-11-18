@@ -14,13 +14,7 @@
 
 <header class="sticky top-0 z-30 border-b border-ink-100 bg-sand-50/90 backdrop-blur">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
-
-        <a href="{{ route('home') }}" aria-label="Global Shipping Alliance home" class="flex items-center">
-            {{-- Phones: wordmark only --}}
-            <img src="{{ asset('images/logo-compact.svg') }}" alt="Global Shipping Alliance" class="h-9 w-auto sm:hidden">
-            {{-- Tablet and desktop: full logo with tagline --}}
-            <img src="{{ asset('images/logo.svg') }}" alt="Global Shipping Alliance" class="hidden h-12 w-auto sm:block">
-        </a>
+        <a href="{{ route('home') }}" aria-label="Glo Shipa home"><x-logo /></a>
 
         <nav class="hidden items-center gap-1 text-sm font-medium text-ink-700 lg:flex" aria-label="Main">
             <a href="{{ route('home') }}" class="rounded-lg px-3 py-2 hover:bg-sand-100 hover:text-ink-950 {{ request()->routeIs('home') ? 'text-ink-950' : '' }}">Home</a>

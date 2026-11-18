@@ -1,9 +1,18 @@
-@props(['dark' => false])
-<span {{ $attributes->class(['inline-flex items-center gap-2.5']) }}>
-    <svg viewBox="0 0 64 64" class="h-9 w-9" aria-hidden="true">
-        <rect width="64" height="64" rx="14" class="{{ $dark ? 'fill-white' : 'fill-ink-900' }}"/>
-        <path d="M44 22a16 16 0 1 0 2 14h-14" fill="none" class="stroke-beacon-500" stroke-width="6" stroke-linecap="round"/>
-        <path d="M12 50h40" class="stroke-tide-500" stroke-width="4" stroke-linecap="round"/>
-    </svg>
-    <span class="font-display text-xl font-extrabold tracking-tight {{ $dark ? 'text-white' : 'text-ink-900' }}">Glo<span class="text-beacon-500"> Shipa</span></span>
+{{-- Global Shipping Alliance logo (transparent SVG). Only ONE image is ever shown:
+     phones get the compact wordmark, screens 640px and wider get the full logo with its tagline.
+     :dark="true"     => white wordmark, for dark backgrounds
+     :compact="true"  => always the wordmark only
+     height="3.25rem" => logo height on desktop (phones use 2.25rem) --}}
+@props(['dark' => false, 'compact' => false, 'height' => '3.25rem'])
+@php $suffix = $dark ? '-light' : ''; @endphp
+@once
+    <style>.gs-logo{display:block;width:auto;height:2.25rem}@media (min-width:640px){.gs-logo{height:var(--gs-logo-h,3.25rem)}}</style>
+@endonce
+<span {{ $attributes->class(['inline-flex items-center']) }}>
+    <picture>
+        @unless ($compact)
+            <source media="(min-width: 640px)" srcset="{{ asset('images/logo/logo' . $suffix . '.svg') }}">
+        @endunless
+        <img src="{{ asset('images/logo/logo-compact' . $suffix . '.svg') }}" alt="Global Shipping Alliance" class="gs-logo" style="--gs-logo-h: {{ $compact ? '2.25rem' : $height }}">
+    </picture>
 </span>
