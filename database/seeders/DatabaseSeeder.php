@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         // is_admin / status are not mass assignable, so they are set explicitly here.
         $admin->forceFill([
-            'name' => 'Glo Shipa Admin',
+            'name' => 'Global Shipping Alliance Admin',
             'email' => config('gloshipa.admin_email'),
             'password' => config('gloshipa.seed_admin_password'),
             'is_admin' => true,

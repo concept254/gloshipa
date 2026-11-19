@@ -1,4 +1,4 @@
-<x-layouts.public title="Track your cargo" description="Freight forwarding and live shipment tracking from Glo Shipa.">
+<x-layouts.public title="Track your cargo" description="Freight forwarding and live shipment tracking from Global Shipping Alliance.">
 
     {{-- HERO --}}
     <section class="relative overflow-hidden bg-sand-100">
@@ -10,7 +10,7 @@
                     {{ rtrim(Cms::setting('hero_title', 'Know exactly where your cargo is'), '.') }}<span class="text-beacon-500">.</span>
                 </h1>
                 <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
-                    {{ Cms::setting('hero_text', 'Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Glo Shipa is handling for you.') }}
+                    {{ Cms::setting('hero_text', 'Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Global Shipping Alliance is handling for you.') }}
                 </p>
 
                 <div class="mt-9 max-w-xl rounded-2xl bg-white p-3 shadow-lift ring-1 ring-ink-100">
@@ -82,7 +82,7 @@
                     <img src="{{ Cms::headerImage($about->header_image, 'about') }}" alt="" class="aspect-[4/3] w-full object-cover" loading="lazy">
                 </div>
                 <div>
-                    <p class="eyebrow">About Glo Shipa</p>
+                    <p class="eyebrow">About Global Shipping Alliance</p>
                     <h2 class="mt-3 font-display text-3xl font-extrabold text-ink-900 sm:text-4xl">{{ $about->subtitle ?: 'A freight partner you can follow every step of the way.' }}</h2>
                     <p class="mt-4 leading-relaxed text-ink-600">{{ \Illuminate\Support\Str::limit(strip_tags(Cms::markdown($about->body)), 320) }}</p>
                     <div class="mt-6 flex flex-wrap gap-3">
@@ -97,7 +97,7 @@
     {{-- WHY --}}
     <section id="why" class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div class="max-w-2xl">
-            <p class="eyebrow">Why Glo Shipa</p>
+            <p class="eyebrow">Why Global Shipping Alliance</p>
             <h2 class="mt-3 font-display text-3xl font-extrabold text-ink-900 sm:text-4xl">Built around the questions you ask every day.</h2>
         </div>
 
@@ -184,7 +184,7 @@
     @if ($posts->isNotEmpty())
         <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
             <div class="flex flex-wrap items-end justify-between gap-4">
-                <x-section-heading eyebrow="News" title="Latest from Glo Shipa" />
+                <x-section-heading eyebrow="News" title="Latest from Global Shipping Alliance" />
                 <a href="{{ route('site.news') }}" class="btn btn-ghost">All news</a>
             </div>
             <div class="mt-10 grid gap-6 md:grid-cols-3">@foreach ($posts as $post)@include('site.partials.post-card')@endforeach</div>

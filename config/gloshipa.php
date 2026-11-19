@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'Glo Shipa',
+    'name' => 'Global Shipping Alliance',
 
     /*
     | Where "new registration waiting for approval" emails are sent.

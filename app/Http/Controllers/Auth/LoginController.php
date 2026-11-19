@@ -58,7 +58,7 @@ class LoginController extends Controller
 
         if (! $user->isActive()) {
             throw ValidationException::withMessages([
-                'login' => 'Your account is not active. Please contact Glo Shipa.',
+                'login' => 'Your account is not active. Please contact Global Shipping Alliance.',
             ]);
         }
 

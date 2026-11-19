@@ -1,4 +1,4 @@
-# Putting Glo Shipa on GitHub and deploying it to cPanel
+# Putting Global Shipping Alliance on GitHub and deploying it to cPanel
 
 How it works: you push your code to GitHub. A GitHub Actions workflow then runs the tests, installs the production PHP packages, builds the CSS, and uploads the finished site to your cPanel hosting over FTPS. **Your host does not need Composer or Node.js**, and your `.env` and database are never touched by a deployment.
 
@@ -44,7 +44,7 @@ git status
 **Read the `git status` list before you commit.** It must **not** contain `.env`, `vendor/`, `node_modules/`, `public/build/` or `database/database.sqlite`. It **should** contain `composer.lock` and `package-lock.json` (both belong in Git). If you see `.env`, stop and do not continue.
 
 ```powershell
-git commit -m "Initial commit: Glo Shipa"
+git commit -m "Initial commit: Global Shipping Alliance"
 git remote add origin https://github.com/concept254/gloshipa.git
 git push -u origin main
 ```

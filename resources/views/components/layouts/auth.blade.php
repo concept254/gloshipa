@@ -12,7 +12,7 @@
         <div class="relative flex h-full flex-col justify-between p-12">
             <a href="{{ route('home') }}"><x-logo :dark="true" /></a>
             <div>
-                <p class="font-display text-4xl font-extrabold leading-tight text-white">Every container,<br>every port,<br><span class="text-beacon-400">one clear view.</span></p>
+                <p class="font-display text-4xl font-extrabold leading-tight text-white">Every consignment,<br>every port,<br><span class="text-beacon-400">one clear view.</span></p>
                 <p class="mt-5 max-w-sm text-sm leading-relaxed text-ink-200">Follow your shipments, update your details and get an email whenever your cargo moves.</p>
             </div>
         </div>

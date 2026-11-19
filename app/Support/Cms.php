@@ -67,7 +67,7 @@ class Cms
         if ($digits === '' || strlen($digits) < 7) {
             return null;
         }
-        $text = (string) self::setting('whatsapp_message', 'Hello Glo Shipa, I would like some help with a shipment.');
+        $text = (string) self::setting('whatsapp_message', 'Hello Global Shipping Alliance, I would like some help with a shipment.');
 
         return 'https://wa.me/' . $digits . '?text=' . rawurlencode($text);
     }

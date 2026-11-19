@@ -189,7 +189,7 @@ return [
         ],
         'Contact & chat' => [
             ['whatsapp_number', 'WhatsApp number', 'text', 'International format, digits only, e.g. 27821234567. Leave empty to hide the chat bubble.'],
-            ['whatsapp_message', 'WhatsApp opening message', 'text', 'Hello Glo Shipa, I would like some help with a shipment.'],
+            ['whatsapp_message', 'WhatsApp opening message', 'text', 'Hello Global Shipping Alliance, I would like some help with a shipment.'],
             ['map_embed_url', 'Google Maps embed link', 'text', 'In Google Maps: Share > Embed a map > copy only the address inside src="..."'],
             ['inquiry_email', 'Send contact and quote messages to', 'text', 'Defaults to ADMIN_EMAIL in .env'],
         ],
@@ -203,7 +203,7 @@ return [
         'Home page' => [
             ['hero_eyebrow', 'Hero small heading', 'text', 'Freight forwarding & cargo tracking'],
             ['hero_title', 'Hero title', 'text', 'Know exactly where your cargo is.'],
-            ['hero_text', 'Hero text', 'textarea', 'Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Glo Shipa is handling for you.'],
+            ['hero_text', 'Hero text', 'textarea', 'Follow every container from port to doorstep. Sign in to see the live status, location and delivery estimate of every shipment Global Shipping Alliance is handling for you.'],
             ['stat_1_value', 'Figure 1 number', 'text', 'e.g. 15+  (figures stay hidden until you fill them in)'],
             ['stat_1_label', 'Figure 1 label', 'text', 'Years in freight'],
             ['stat_2_value', 'Figure 2 number', 'text', 'e.g. 40+'],

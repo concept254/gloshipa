@@ -16,7 +16,7 @@ class NewRegistrationAlert extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'New Glo Shipa registration awaiting approval: ' . $this->user->name);
+        return new Envelope(subject: 'New Global Shipping Alliance registration awaiting approval: ' . $this->user->name);
     }
 
     public function content(): Content

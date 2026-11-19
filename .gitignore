@@ -26,7 +26,7 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-# Glo Shipa additions
+# Global Shipping Alliance additions
 # Any real environment file stays out of Git; only .env.example is tracked.
 .env.*
 !.env.example

@@ -59,7 +59,7 @@
                 @empty
                     <div class="card p-10 text-center">
                         <p class="font-display text-lg font-bold text-ink-900">Nothing on its way right now</p>
-                        <p class="mt-1 text-sm text-ink-500">New shipments will appear here as soon as Glo Shipa assigns them to you.</p>
+                        <p class="mt-1 text-sm text-ink-500">New shipments will appear here as soon as Global Shipping Alliance assigns them to you.</p>
                     </div>
                 @endforelse
             </div>

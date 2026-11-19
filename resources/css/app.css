@@ -6,11 +6,11 @@
 
 /*
 |--------------------------------------------------------------------------
-| Glo Shipa theme
+| Global Shipping Alliance theme
 |--------------------------------------------------------------------------
 | `--color-*: initial` removes Tailwind's entire default palette (no gray-500,
 | blue-600, red-500 ...). Only the colours below exist, so every screen uses
-| the Glo Shipa identity: deep harbour navy, beacon orange, tide teal, sand.
+| the Global Shipping Alliance identity: deep harbour navy, beacon orange, tide teal, sand.
 */
 @theme {
     --color-*: initial;

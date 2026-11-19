@@ -19,7 +19,7 @@ database tables and new files. It never changes your users, shipments, tracking,
 
 ## Step 1. Back up (2 minutes)
 
-On the host, open phpMyAdmin, select the Glo Shipa database, **Export > Quick > Go**. Keep the .sql file.
+On the host, open phpMyAdmin, select the Global Shipping Alliance database, **Export > Quick > Go**. Keep the .sql file.
 
 ## Step 2. Try it on your computer first (Herd)
 

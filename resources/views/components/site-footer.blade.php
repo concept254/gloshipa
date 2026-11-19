@@ -78,7 +78,8 @@
             </ul>
         </div>
     </div>
-    <div class="border-t border-ink-800 py-5 text-center text-xs text-ink-400">&copy; {{ date('Y') }} Glo Shipa. All rights reserved.</div>
+    <div class="border-t border-ink-800 py-5 text-center text-xs text-ink-400">&copy; {{ date('Y') }} Global Shipping Alliance. All rights reserved.</div>
+    <x-sea-sound />
 </footer>
 
 <x-site-chrome />

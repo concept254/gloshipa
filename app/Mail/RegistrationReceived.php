@@ -16,7 +16,7 @@ class RegistrationReceived extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'We received your Glo Shipa registration');
+        return new Envelope(subject: 'We received your Global Shipping Alliance registration');
     }
 
     public function content(): Content

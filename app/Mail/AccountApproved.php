@@ -16,7 +16,7 @@ class AccountApproved extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'Your Glo Shipa account is approved');
+        return new Envelope(subject: 'Your Global Shipping Alliance account is approved');
     }
 
     public function content(): Content

@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
  *
  * Live site:  php artisan db:seed --class=ContentSeeder --force
  *
- * The wording is generic freight-forwarding text. Replace it with Glo Shipa's own
+ * The wording is generic freight-forwarding text. Replace it with Global Shipping Alliance's own
  * details in the admin (Website > Pages / Services / FAQs). Sample testimonials, team and
  * partners are created on a local machine only, never on the live server.
  */
@@ -33,7 +33,7 @@ class ContentSeeder extends Seeder
         // [slug, title, subtitle, kind, menu, footer, order, body]
         $rows = [
             ['about', 'About us', 'A freight partner you can follow every step of the way.', 'system', true, true, 10,
-"Glo Shipa is a freight forwarding and cargo tracking company. We help importers and exporters move goods by sea, air and road, and we keep every client informed from the port of origin to the final delivery address.
+"Global Shipping Alliance is a freight forwarding and cargo tracking company. We help importers and exporters move goods by sea, air and road, and we keep every client informed from the port of origin to the final delivery address.
 
 ## What we believe
 
@@ -114,7 +114,7 @@ Always confirm the exact term and the Incoterms edition in your contract.
 
 ## 1. About these terms
 
-These terms apply to all quotes, services and use of the Glo Shipa website. By requesting a quote, creating an account or using our services you agree to them.
+These terms apply to all quotes, services and use of the Global Shipping Alliance website. By requesting a quote, creating an account or using our services you agree to them.
 
 ## 2. Quotes and bookings
 

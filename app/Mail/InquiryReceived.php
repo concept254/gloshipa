@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
-/** To the Glo Shipa team when someone uses the contact or quote form. */
+/** To the Global Shipping Alliance team when someone uses the contact or quote form. */
 class InquiryReceived extends Mailable
 {
     public function __construct(public Inquiry $inquiry)

@@ -14,7 +14,7 @@
 
 <header class="sticky top-0 z-30 border-b border-ink-100 bg-sand-50/90 backdrop-blur">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
-        <a href="{{ route('home') }}" aria-label="Glo Shipa home"><x-logo /></a>
+        <a href="{{ route('home') }}" aria-label="Global Shipping Alliance home"><x-logo /></a>
 
         <nav class="hidden items-center gap-1 text-sm font-medium text-ink-700 lg:flex" aria-label="Main">
             <a href="{{ route('home') }}" class="rounded-lg px-3 py-2 hover:bg-sand-100 hover:text-ink-950 {{ request()->routeIs('home') ? 'text-ink-950' : '' }}">Home</a>

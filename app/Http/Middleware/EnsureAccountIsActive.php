@@ -23,7 +23,7 @@ class EnsureAccountIsActive
             $request->session()->regenerateToken();
 
             return redirect()->route('login')->withErrors([
-                'login' => 'Your account is not active. Please contact Glo Shipa.',
+                'login' => 'Your account is not active. Please contact Global Shipping Alliance.',
             ]);
         }
 

@@ -209,11 +209,11 @@ class WebsiteTest extends TestCase
         $this->actingAs($admin)->delete("/admin/website/pages/{$about->id}")->assertSessionHas('warning');
         $this->assertDatabaseHas('pages', ['slug' => 'about']);
 
-        $this->actingAs($admin)->put("/admin/website/pages/{$about->id}", ['title' => 'About Glo Shipa', 'slug' => 'hacked', 'sort_order' => 10]);
+        $this->actingAs($admin)->put("/admin/website/pages/{$about->id}", ['title' => 'About Global Shipping Alliance', 'slug' => 'hacked', 'sort_order' => 10]);
         $about->refresh();
         $this->assertSame('about', $about->slug);
-        $this->assertSame('About Glo Shipa', $about->title);
-        $this->get('/about')->assertOk()->assertSee('About Glo Shipa');
+        $this->assertSame('About Global Shipping Alliance', $about->title);
+        $this->get('/about')->assertOk()->assertSee('About Global Shipping Alliance');
     }
 
     public function test_admin_can_manage_services_faqs_and_posts(): void

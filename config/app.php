@@ -61,7 +61,7 @@ return [
     |
     | Here you may specify the default timezone for your application, which
     | will be used by the PHP date and date-time functions. The timezone
-    | is set to Africa/Johannesburg for Glo Shipa. Change APP_TIMEZONE in .env to override it.
+    | is set to Africa/Johannesburg for Global Shipping Alliance. Change APP_TIMEZONE in .env to override it.
     |
     */
 

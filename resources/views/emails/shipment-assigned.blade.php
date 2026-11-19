@@ -3,7 +3,7 @@
 @section('preheader', 'Tracking ID ' . $shipment->tracking_id . ': ' . $shipment->origin . ' to ' . $shipment->destination)
 @section('content')
 <h1 style="margin:0 0 14px;font-size:24px;line-height:1.25;color:#0e2033;">A shipment has been assigned to you</h1>
-<p style="margin:0 0 18px;">Hi {{ $shipment->user->name }}, Glo Shipa has added a new shipment to your account. Here are the details:</p>
+<p style="margin:0 0 18px;">Hi {{ $shipment->user->name }}, Global Shipping Alliance has added a new shipment to your account. Here are the details:</p>
 
 @php
     $rows = [
